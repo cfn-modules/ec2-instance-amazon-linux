@@ -286,7 +286,7 @@ Resources:
       AllocationId: !GetAtt 'ElasticIP.AllocationId'
       NetworkInterfaceId: !Ref NetworkInterface
   Instance:
-    #DependsOn: EIPAssociation # TODO does not work when reach is Private. Unfortunately, we can not use !If in DependsOn...
+    # DependsOn: EIPAssociation # TODO does not work when reach is Private. Unfortunately, we can not use !If in DependsOn...
     Type: 'AWS::EC2::Instance'
     Metadata:
       'AWS::CloudFormation::Init':
@@ -413,7 +413,7 @@ Resources:
         'Fn::Base64': !Sub |
           #!/bin/bash -ex
           trap '/opt/aws/bin/cfn-signal -e 1 --region ${AWS::Region} --stack ${AWS::StackName} --resource Instance' ERR
-          /opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource Instance 
+          /opt/aws/bin/cfn-init -v --region ${AWS::Region} --stack ${AWS::StackName} --resource Instance
           ${UserData}
           /opt/aws/bin/cfn-signal -e 0 --region ${AWS::Region} --stack ${AWS::StackName} --resource Instance
       Tags:
