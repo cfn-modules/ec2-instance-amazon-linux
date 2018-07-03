@@ -85,6 +85,18 @@ Parameters:
     Description: 'Optional port allowing ingress TCP traffic.'
     Type: String
     Default: ''
+  ClientSgModule1:
+    Description: 'Optional stack name of client-sg module to mark traffic from EC2 instance.'
+    Type: String
+    Default: ''
+  ClientSgModule2:
+    Description: 'Optional stack name of client-sg module to mark traffic from EC2 instance.'
+    Type: String
+    Default: ''
+  ClientSgModule3:
+    Description: 'Optional stack name of client-sg module to mark traffic from EC2 instance.'
+    Type: String
+    Default: ''
 Mappings:
   RegionMap:
     'ap-south-1':
@@ -131,6 +143,9 @@ Conditions:
   HasIngressTcpPort3: !Not [!Equals [!Ref IngressTcpPort3, '']]
   HasHostedZoneModuleAndSubnetReachPublic: !And [!Condition HasHostedZoneModule, !Condition HasSubnetReachPublic]
   HasHostedZoneModuleAndSubnetReachPrivate: !And [!Condition HasHostedZoneModule, !Condition HasSubnetReachPrivate]
+  HasClientSgModule1: !Not [!Equals [!Ref ClientSgModule1, '']]
+  HasClientSgModule2: !Not [!Equals [!Ref ClientSgModule2, '']]
+  HasClientSgModule3: !Not [!Equals [!Ref ClientSgModule3, '']]
 Resources:
   RecordSetPublicIpAddress:
     Condition: HasHostedZoneModuleAndSubnetReachPublic
@@ -277,6 +292,9 @@ Resources:
     Properties:
       GroupSet:
       - !Ref SecurityGroup
+      - !If [HasClientSgModule1, {'Fn::ImportValue': !Sub '${ClientSgModule1}-SecurityGroupId'}, !Ref 'AWS::NoValue']
+      - !If [HasClientSgModule2, {'Fn::ImportValue': !Sub '${ClientSgModule2}-SecurityGroupId'}, !Ref 'AWS::NoValue']
+      - !If [HasClientSgModule3, {'Fn::ImportValue': !Sub '${ClientSgModule3}-SecurityGroupId'}, !Ref 'AWS::NoValue']
       SubnetId:
         'Fn::ImportValue': !Sub '${VpcModule}-SubnetId${SubnetAZChar}${SubnetReach}'
   EIPAssociation:
@@ -460,7 +478,7 @@ Outputs:
   ModuleId:
     Value: 'ec2-instance-amazon-linux'
   ModuleVersion:
-    Value: '0.0.7'
+    Value: '0.0.8'
   StackName:
     Value: !Ref 'AWS::StackName'
   SecurityGroupId:

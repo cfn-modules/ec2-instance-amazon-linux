@@ -37,6 +37,9 @@ Resources:
         IngressTcpPort1: '' # optional
         IngressTcpPort2: '' # optional
         IngressTcpPort3: '' # optional
+        ClientSgModule1: '' # optional
+        ClientSgModule2: '' # optional
+        ClientSgModule3: '' # optional
       TemplateURL: './node_modules/@cfn-modules/ec2-instance-amazon-linux/module.yml'
 ```
 
@@ -161,6 +164,27 @@ Resources:
     <tr>
       <td>IngressTcpPort3</td>
       <td>Port allowing ingress TCP traffic</td>
+      <td></td>
+      <td>no</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ClientSgModule1</td>
+      <td>Stack name of <a href="https://www.npmjs.com/package/@cfn-modules/client-sg">client-sg module</a> module to mark traffic from EC2 instance</td>
+      <td></td>
+      <td>no</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ClientSgModule2</td>
+      <td>Stack name of <a href="https://www.npmjs.com/package/@cfn-modules/client-sg">client-sg module</a> module to mark traffic from EC2 instance</td>
+      <td></td>
+      <td>no</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ClientSgModule3</td>
+      <td>Stack name of <a href="https://www.npmjs.com/package/@cfn-modules/client-sg">client-sg module</a> module to mark traffic from EC2 instance</td>
       <td></td>
       <td>no</td>
       <td></td>
