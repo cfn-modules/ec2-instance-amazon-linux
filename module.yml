@@ -390,9 +390,12 @@ Resources:
             rpm:
               aws-ec2-ssh: 'https://s3-eu-west-1.amazonaws.com/widdix-aws-ec2-ssh-releases-eu-west-1/aws-ec2-ssh-1.8.0-1.el7.centos.noarch.rpm'
           commands:
-            a_enable:
-              command: "sed -i 's/DONOTSYNC=1/DONOTSYNC=0/g' /etc/aws-ec2-ssh.conf && /usr/bin/import_users.sh"
-              test: "grep -q 'DONOTSYNC=1' /etc/aws-ec2-ssh.conf"
+            a_configure_sudo:
+              command: 'sed -i ''s/SUDOERS_GROUPS=""/SUDOERS_GROUPS="##ALL##"/g'' /etc/aws-ec2-ssh.conf'
+              test: 'grep -q ''SUDOERS_GROUPS=""'' /etc/aws-ec2-ssh.conf'
+            b_enable:
+              command: 'sed -i ''s/DONOTSYNC=1/DONOTSYNC=0/g'' /etc/aws-ec2-ssh.conf && /usr/bin/import_users.sh'
+              test: 'grep -q ''DONOTSYNC=1'' /etc/aws-ec2-ssh.conf'
         config:
           files:
             '/etc/cfn/cfn-hup.conf':
@@ -478,7 +481,7 @@ Outputs:
   ModuleId:
     Value: 'ec2-instance-amazon-linux'
   ModuleVersion:
-    Value: '0.0.8'
+    Value: '0.0.9'
   StackName:
     Value: !Ref 'AWS::StackName'
   SecurityGroupId:
