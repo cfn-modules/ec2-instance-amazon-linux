@@ -40,6 +40,8 @@ Resources:
         ClientSgModule1: '' # optional
         ClientSgModule2: '' # optional
         ClientSgModule3: '' # optional
+        FileSystemModule1: '' # optional
+        VolumeModule1: '' # optional
       TemplateURL: './node_modules/@cfn-modules/ec2-instance-amazon-linux/module.yml'
 ```
 
@@ -185,6 +187,20 @@ Resources:
     <tr>
       <td>ClientSgModule3</td>
       <td>Stack name of <a href="https://www.npmjs.com/package/@cfn-modules/client-sg">client-sg module</a> module to mark traffic from EC2 instance</td>
+      <td></td>
+      <td>no</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>FileSystemModule1</td>
+      <td>Stack name of <a href="https://www.npmjs.com/package/@cfn-modules/efs-file-system">efs-file-system module</a></td>
+      <td></td>
+      <td>no</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>VolumeModule1</td>
+      <td>Stack name of <a href="https://www.npmjs.com/package/@cfn-modules/ebs-volume">ebs-volume</a></td>
       <td></td>
       <td>no</td>
       <td></td>
