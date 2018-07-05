@@ -14,7 +14,7 @@
 # limitations under the License.
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'cfn-modules: AWS EC2 instance (Amazon Linux)'
-# cfn-modules:implements(ExposeSecurityGroupId)
+# cfn-modules:implements(ExposeId, ExposeSecurityGroupId)
 Parameters:
   VpcModule:
     Description: 'Stack name of vpc module.'
@@ -40,6 +40,7 @@ Parameters:
     Type: String
     Default: false
     AllowedValues: [true, false]
+  # TODO add SystemsManagerAccess
   InstanceType:
     Description: 'The instance type for the EC2 instance.'
     Type: String
@@ -502,9 +503,13 @@ Outputs:
   ModuleId:
     Value: 'ec2-instance-amazon-linux'
   ModuleVersion:
-    Value: '0.0.11'
+    Value: '0.0.12'
   StackName:
     Value: !Ref 'AWS::StackName'
+  Id:
+    Value: !Ref Instance
+    Export:
+      Name: !Sub '${AWS::StackName}-Id'
   SecurityGroupId:
     Value: !Ref SecurityGroup
     Export:
