@@ -106,38 +106,46 @@ Parameters:
     Description: 'Optional stack name of ebs-volume module.'
     Type: String
     Default: ''
+  AmazonLinuxVersion:
+    Description: 'Optional version of Amazon Linux.'
+    Type: String
+    Default: '2018.03.0.20180622'
+    AllowedValues: ['2018.03.0.20180622']
 Mappings:
-  RegionMap:
+  VersionMap:
+    '2018.03.0.20180622':
+      Map: RegionMap201803020180622
+  RegionMap201803020180622:
     'ap-south-1':
-      AMI: 'ami-76d6f519'
+      ImageId: 'ami-5a8da735'
     'eu-west-3':
-      AMI: 'ami-969c2deb'
+      ImageId: 'ami-d50bbaa8'
     'eu-west-2':
-      AMI: 'ami-a36f8dc4'
+      ImageId: 'ami-b2b55cd5'
     'eu-west-1':
-      AMI: 'ami-ca0135b3'
+      ImageId: 'ami-e4515e0e'
     'ap-northeast-2':
-      AMI: 'ami-c10fa6af'
+      ImageId: 'ami-ebc47185'
     'ap-northeast-1':
-      AMI: 'ami-92df37ed'
+      ImageId: 'ami-9c9443e3'
     'sa-east-1':
-      AMI: 'ami-3885d854'
+      ImageId: 'ami-83d58fef'
     'ca-central-1':
-      AMI: 'ami-338a0a57'
+      ImageId: 'ami-03e86a67'
     'ap-southeast-1':
-      AMI: 'ami-de90a5a2'
+      ImageId: 'ami-ed838091'
     'ap-southeast-2':
-      AMI: 'ami-423bec20'
+      ImageId: 'ami-33f92051'
     'eu-central-1':
-      AMI: 'ami-9a91b371'
+      ImageId: 'ami-a058674b'
     'us-east-1':
-      AMI: 'ami-14c5486b'
+      ImageId: 'ami-cfe4b2b0'
     'us-east-2':
-      AMI: 'ami-922914f7'
+      ImageId: 'ami-40142d25'
     'us-west-1':
-      AMI: 'ami-25110f45'
+      ImageId: 'ami-0e86606d'
     'us-west-2':
-      AMI: 'ami-e251209a'
+      ImageId: 'ami-0ad99772'
 Conditions:
   HasAlertingModule: !Not [!Equals [!Ref AlertingModule, '']]
   HasBastionModule: !Not [!Equals [!Ref BastionModule, '']]
@@ -435,7 +443,7 @@ Resources:
                 - '/etc/cfn/hooks.d/cfn-auto-reloader.conf'
     Properties:
       IamInstanceProfile: !Ref InstanceProfile
-      ImageId: !FindInMap [RegionMap, !Ref 'AWS::Region', AMI]
+      ImageId: !FindInMap [!FindInMap [VersionMap, !Ref AmazonLinuxVersion, Map], !Ref 'AWS::Region', ImageId]
       InstanceType: !Ref InstanceType
       KeyName: !If [HasKeyName, !Ref KeyName, !Ref 'AWS::NoValue']
       NetworkInterfaces:
