@@ -40,7 +40,11 @@ Parameters:
     Type: String
     Default: false
     AllowedValues: [true, false]
-  # TODO add SystemsManagerAccess
+  SystemsManagerAccess:
+    Description: 'Enable AWS Systems Manager agent and authorization.'
+    Type: String
+    Default: true
+    AllowedValues: [true, false]
   InstanceType:
     Description: 'The instance type for the EC2 instance.'
     Type: String
@@ -155,6 +159,7 @@ Conditions:
   HasVolumeModule1: !Not [!Equals [!Ref VolumeModule1, '']]
   HasKeyName: !Not [!Equals [!Ref KeyName, '']]
   HasIAMUserSSHAccess: !Equals [!Ref IAMUserSSHAccess, 'true']
+  HasSystemsManagerAccess: !Equals [!Ref SystemsManagerAccess, 'true']
   HasSubnetReachPublic: !Equals [!Ref SubnetReach, Public]
   HasSubnetReachPrivate: !Equals [!Ref SubnetReach, Private]
   HasIngressTcpPort1: !Not [!Equals [!Ref IngressTcpPort1, '']]
@@ -267,6 +272,7 @@ Resources:
           Principal:
             Service: 'ec2.amazonaws.com'
           Action: 'sts:AssumeRole'
+      ManagedPolicyArns: !If [HasSystemsManagerAccess, ['arn:aws:iam::aws:policy/service-role/AmazonEC2RoleforSSM'], []]
       Policies:
       - PolicyName: logs
         PolicyDocument:
@@ -441,6 +447,9 @@ Resources:
                 files:
                 - '/etc/cfn/cfn-hup.conf'
                 - '/etc/cfn/hooks.d/cfn-auto-reloader.conf'
+              amazon-ssm-agent:
+                enabled: !If [HasSystemsManagerAccess, true, false]
+                ensureRunning: !If [HasSystemsManagerAccess, true, false]
     Properties:
       IamInstanceProfile: !Ref InstanceProfile
       ImageId: !FindInMap [!FindInMap [VersionMap, !Ref AmazonLinuxVersion, Map], !Ref 'AWS::Region', ImageId]
@@ -511,7 +520,7 @@ Outputs:
   ModuleId:
     Value: 'ec2-instance-amazon-linux'
   ModuleVersion:
-    Value: '0.0.13'
+    Value: '0.0.15'
   StackName:
     Value: !Ref 'AWS::StackName'
   Id:
