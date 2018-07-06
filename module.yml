@@ -49,8 +49,8 @@ Parameters:
     Description: 'The name for the EC2 instance.'
     Type: String
     Default: 'test'
-  SubnetAZChar:
-    Description: 'Subnet availability zone char.'
+  AZChar:
+    Description: 'Availability zone char.'
     Type: String
     Default: A
     AllowedValues: [A, B, C]
@@ -315,7 +315,7 @@ Resources:
       - !If [HasClientSgModule2, {'Fn::ImportValue': !Sub '${ClientSgModule2}-SecurityGroupId'}, !Ref 'AWS::NoValue']
       - !If [HasClientSgModule3, {'Fn::ImportValue': !Sub '${ClientSgModule3}-SecurityGroupId'}, !Ref 'AWS::NoValue']
       SubnetId:
-        'Fn::ImportValue': !Sub '${VpcModule}-SubnetId${SubnetAZChar}${SubnetReach}'
+        'Fn::ImportValue': !Sub '${VpcModule}-SubnetId${AZChar}${SubnetReach}'
   EIPAssociation:
     Condition: HasSubnetReachPublic
     Type: 'AWS::EC2::EIPAssociation'
