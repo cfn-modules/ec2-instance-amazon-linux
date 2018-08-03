@@ -448,9 +448,7 @@ Resources:
                 files:
                 - '/etc/cfn/cfn-hup.conf'
                 - '/etc/cfn/hooks.d/cfn-auto-reloader.conf'
-              amazon-ssm-agent:
-                enabled: !If [HasSystemsManagerAccess, true, false]
-                ensureRunning: !If [HasSystemsManagerAccess, true, false]
+              # amazon-ssm-agent is started by upstart
     Properties:
       IamInstanceProfile: !Ref InstanceProfile
       ImageId: !FindInMap [!FindInMap [VersionMap, !Ref AmazonLinuxVersion, Map], !Ref 'AWS::Region', ImageId]
