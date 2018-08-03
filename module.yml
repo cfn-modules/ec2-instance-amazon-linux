@@ -442,13 +442,13 @@ Resources:
                 runas=root
           services:
             sysvinit:
+              # amazon-ssm-agent is started by upstart
               cfn-hup:
                 enabled: true
                 ensureRunning: true
                 files:
                 - '/etc/cfn/cfn-hup.conf'
                 - '/etc/cfn/hooks.d/cfn-auto-reloader.conf'
-              # amazon-ssm-agent is started by upstart
     Properties:
       IamInstanceProfile: !Ref InstanceProfile
       ImageId: !FindInMap [!FindInMap [VersionMap, !Ref AmazonLinuxVersion, Map], !Ref 'AWS::Region', ImageId]
