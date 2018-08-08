@@ -29,7 +29,7 @@ Resources:
         ClientSgModule: !GetAtt 'ClientSg.Outputs.StackName'
         NumberOfAvailabilityZones: !GetAtt 'Vpc.Outputs.NumberOfAvailabilityZones'
       TemplateURL: './node_modules/@cfn-modules/efs-file-system/module.yml'
-  Ec2:
+  Instance:
     Type: 'AWS::CloudFormation::Stack'
     Properties:
       Parameters:
@@ -41,4 +41,4 @@ Resources:
       TemplateURL: './node_modules/@cfn-modules/ec2-instance-amazon-linux/module.yml'
 Outputs:
   PublicIpAddress:
-    Value: !GetAtt 'Ec2.Outputs.PublicIpAddress'
+    Value: !GetAtt 'Instance.Outputs.PublicIpAddress'

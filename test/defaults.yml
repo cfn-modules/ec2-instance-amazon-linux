@@ -11,7 +11,7 @@ Resources:
         FlowLog: 'false' # speed up the example
         NatGateways: 'false' # speed up the example
       TemplateURL: './node_modules/@cfn-modules/vpc/module.yml'
-  Ec2:
+  Instance:
     Type: 'AWS::CloudFormation::Stack'
     Properties:
       Parameters:
@@ -19,4 +19,4 @@ Resources:
       TemplateURL: './node_modules/@cfn-modules/ec2-instance-amazon-linux/module.yml'
 Outputs:
   PublicIpAddress:
-    Value: !GetAtt 'Ec2.Outputs.PublicIpAddress'
+    Value: !GetAtt 'Instance.Outputs.PublicIpAddress'
