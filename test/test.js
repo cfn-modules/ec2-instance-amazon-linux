@@ -75,3 +75,4 @@ test('file-system', async t => {
 
 // TODO test SSH access with IAM user (IAMUserSSHAccess := true)
 // TODO test SSH access with BastionModule
+// TODO test VolumeModule1
