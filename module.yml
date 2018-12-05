@@ -114,11 +114,44 @@ Parameters:
     Description: 'Optional version of Amazon Linux (update requires replacement of root volume = data loss!).'
     Type: String
     Default: '2018.03.0.20180622'
-    AllowedValues: ['2018.03.0.20180622']
+    AllowedValues: ['2018.03.0.20181116', '2018.03.0.20180622']
 Mappings:
   VersionMap:
+    '2018.03.0.20181116':
+      Map: RegionMap201803020181116
     '2018.03.0.20180622':
       Map: RegionMap201803020180622
+  RegionMap201803020181116:
+    'ap-south-1':
+      ImageId: 'ami-0bc6e84391ec20816'
+    'eu-west-3':
+      ImageId: 'ami-0fad8cb11d5e5a502'
+    'eu-west-2':
+      ImageId: 'ami-0307e8ce88a8245d4'
+    'eu-west-1':
+      ImageId: 'ami-031a3db8bacbcdc20'
+    'ap-northeast-2':
+      ImageId: 'ami-0076ae0908f382581'
+    'ap-northeast-1':
+      ImageId: 'ami-063fa8762cdc9a5a6'
+    'sa-east-1':
+      ImageId: 'ami-09b9eaea4f33f0200'
+    'ca-central-1':
+      ImageId: 'ami-0bce70e886ac6890a'
+    'ap-southeast-1':
+      ImageId: 'ami-07ad70c269d8a418c'
+    'ap-southeast-2':
+      ImageId: 'ami-0aff30363d302d23a'
+    'eu-central-1':
+      ImageId: 'ami-07f1aa69c7c7b01c9'
+    'us-east-1':
+      ImageId: 'ami-09479453c5cde9639'
+    'us-east-2':
+      ImageId: 'ami-023c8dbf8268fb3ca'
+    'us-west-1':
+      ImageId: 'ami-06ff511fea5db2c99'
+    'us-west-2':
+      ImageId: 'ami-0bb5806b2e825a199'
   RegionMap201803020180622:
     'ap-south-1':
       ImageId: 'ami-5a8da735'
@@ -519,7 +552,7 @@ Outputs:
   ModuleId:
     Value: 'ec2-instance-amazon-linux'
   ModuleVersion:
-    Value: '1.1.0'
+    Value: '1.2.0'
   StackName:
     Value: !Ref 'AWS::StackName'
   Id:

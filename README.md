@@ -214,7 +214,7 @@ Resources:
       <td>Version of Amazon Linux (update requires replacement of root volume = data loss!)</td>
       <td>2018.03.0.20180622</td>
       <td>no</td>
-      <td>['2018.03.0.20180622']</td>
+      <td>['2018.03.0.20181116', 2018.03.0.20180622']</td>
     </tr>
   </tbody>
 </table>
