@@ -141,7 +141,7 @@ Resources:
     </tr>
     <tr>
       <td>SubDomainNameWithDot</td>
-      <td>Name that is used to create the DNS entry with trailing dot, e.g. ${SubDomainNameWithDot}${HostedZoneName}. Leave blank for naked (or apex and bare) domain. Requires HostedZoneModule parameter!</td>
+      <td>Name that is used to create the DNS entry with trailing dot, e.g. §{SubDomainNameWithDot}§{HostedZoneName}. Leave blank for naked (or apex and bare) domain. Requires HostedZoneModule parameter!</td>
       <td>test.</td>
       <td>no</td>
       <td></td>
@@ -214,7 +214,7 @@ Resources:
       <td>Version of Amazon Linux (update requires replacement of root volume = data loss!)</td>
       <td>2018.03.0.20180622</td>
       <td>no</td>
-      <td>['2018.03.0.20180622']</td>
+      <td>['2018.03.0.20181116', 2018.03.0.20180622']</td>
     </tr>
   </tbody>
 </table>
