@@ -45,7 +45,7 @@ Resources:
         ClientSgModule3: '' # optional
         FileSystemModule1: '' # optional
         VolumeModule1: '' # optional
-        AmazonLinuxVersion: '2018.03.0.20180622' # optional
+        AmazonLinuxVersion: '2018.03.0.20181116' # set this to the latest available version!
       TemplateURL: './node_modules/@cfn-modules/ec2-instance-amazon-linux/module.yml'
 ```
 
