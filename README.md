@@ -49,6 +49,19 @@ Resources:
       TemplateURL: './node_modules/@cfn-modules/ec2-instance-amazon-linux/module.yml'
 ```
 
+## Examples
+
+* [ec2-ebs](https://github.com/cfn-modules/docs/tree/master/examples/ec2-ebs)
+* [ec2-efs](https://github.com/cfn-modules/docs/tree/master/examples/ec2-efs)
+* [ec2-mysql](https://github.com/cfn-modules/docs/tree/master/examples/ec2-mysql)
+* [ec2-postgres](https://github.com/cfn-modules/docs/tree/master/examples/ec2-postgres)
+* [ec2-ssh-bastion](https://github.com/cfn-modules/docs/tree/master/examples/ec2-ssh-bastion)
+
+## Related modules
+
+* [asg-singleton-amazon-linux2](https://github.com/cfn-modules/asg-singleton-amazon-linux2)
+* [ec2-instance-amazon-linux2](https://github.com/cfn-modules/ec2-instance-amazon-linux2)
+
 ## Parameters
 
 <table>
