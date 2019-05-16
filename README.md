@@ -46,6 +46,7 @@ Resources:
         FileSystemModule1: '' # optional
         VolumeModule1: '' # optional
         AmazonLinuxVersion: '2018.03.0.20181116' # set this to the latest available version!
+        ManagedPolicyArns: '' # optional
       TemplateURL: './node_modules/@cfn-modules/ec2-instance-amazon-linux/module.yml'
 ```
 
@@ -216,6 +217,13 @@ Resources:
       <td>no</td>
       <td>['2018.03.0.20181116', 2018.03.0.20180622']</td>
     </tr>
+    <tr>
+      <td>ManagedPolicyArns</td>
+      <td>Comma-delimited list of IAM managed policy ARNs to attach to the instance's IAM role</td>
+      <td></td>
+      <td>no</td>
+      <td></td>
+    </tr>
   </tbody>
 </table>
 
@@ -226,3 +234,9 @@ Resources:
 * Secure: Root volume is not encrypted at-rest (not possible unless the AMI is encrypted)
 * Secure: Root volume it not backed up
 * Monitoring: Network In+Out is not monitored according to capacity of instance type
+
+## Migration Guides
+
+### Migrate to v2
+
+* If `SystemsManagerAccess` is set to `true`, we no longer attach the AWS managed policy `AmazonEC2RoleforSSM` for security reasons. Instead we only allow the SSM agent to communicate with the backend and we enable Session Manager. If you need more permissions, checkout our [SSM example](https://github.com/cfn-modules/docs/tree/master/examples/asg-singleton-ssm).
