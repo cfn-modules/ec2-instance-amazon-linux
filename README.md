@@ -45,7 +45,7 @@ Resources:
         ClientSgModule3: '' # optional
         FileSystemModule1: '' # optional
         VolumeModule1: '' # optional
-        AmazonLinuxVersion: '2018.03.0.20181116' # set this to the latest available version!
+        AmazonLinuxVersion: '2018.03.0.20180622' # set this to the latest available version!
         ManagedPolicyArns: '' # optional
       TemplateURL: './node_modules/@cfn-modules/ec2-instance-amazon-linux/module.yml'
 ```
@@ -228,7 +228,7 @@ Resources:
       <td>Version of Amazon Linux (update requires replacement of root volume = data loss!)</td>
       <td>2018.03.0.20180622</td>
       <td>no</td>
-      <td>['2018.03.0.20181116', 2018.03.0.20180622']</td>
+      <td>['2018.03.0.20190514', '2018.03.0.20181116', '2018.03.0.20180622']</td>
     </tr>
     <tr>
       <td>ManagedPolicyArns</td>

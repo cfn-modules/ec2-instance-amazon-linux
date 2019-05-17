@@ -114,17 +114,50 @@ Parameters:
     Description: 'Optional version of Amazon Linux (update requires replacement of root volume = data loss!).'
     Type: String
     Default: '2018.03.0.20180622'
-    AllowedValues: ['2018.03.0.20181116', '2018.03.0.20180622']
+    AllowedValues: ['2018.03.0.20190514', '2018.03.0.20181116', '2018.03.0.20180622']
   ManagedPolicyArns:
     Description: 'Optional comma-delimited list of IAM managed policy ARNs to attach to the instance''s IAM role'
     Type: String
     Default: ''
 Mappings:
   VersionMap:
-    '2018.03.0.20181116':
-      Map: RegionMap201803020181116
     '2018.03.0.20180622':
       Map: RegionMap201803020180622
+    '2018.03.0.20181116':
+      Map: RegionMap201803020181116
+    '2018.03.0.20190514':
+      Map: RegionMap201803020190514
+  RegionMap201803020180622:
+    'ap-south-1':
+      ImageId: 'ami-5a8da735'
+    'eu-west-3':
+      ImageId: 'ami-d50bbaa8'
+    'eu-west-2':
+      ImageId: 'ami-b2b55cd5'
+    'eu-west-1':
+      ImageId: 'ami-e4515e0e'
+    'ap-northeast-2':
+      ImageId: 'ami-ebc47185'
+    'ap-northeast-1':
+      ImageId: 'ami-9c9443e3'
+    'sa-east-1':
+      ImageId: 'ami-83d58fef'
+    'ca-central-1':
+      ImageId: 'ami-03e86a67'
+    'ap-southeast-1':
+      ImageId: 'ami-ed838091'
+    'ap-southeast-2':
+      ImageId: 'ami-33f92051'
+    'eu-central-1':
+      ImageId: 'ami-a058674b'
+    'us-east-1':
+      ImageId: 'ami-cfe4b2b0'
+    'us-east-2':
+      ImageId: 'ami-40142d25'
+    'us-west-1':
+      ImageId: 'ami-0e86606d'
+    'us-west-2':
+      ImageId: 'ami-0ad99772'
   RegionMap201803020181116:
     'ap-south-1':
       ImageId: 'ami-0bc6e84391ec20816'
@@ -158,37 +191,39 @@ Mappings:
       ImageId: 'ami-06ff511fea5db2c99'
     'us-west-2':
       ImageId: 'ami-0bb5806b2e825a199'
-  RegionMap201803020180622:
+  RegionMap201803020190514:
+    'eu-north-1':
+      ImageId: 'ami-be4bc3c0'
     'ap-south-1':
-      ImageId: 'ami-5a8da735'
+      ImageId: 'ami-0eacc5b7915ba9921'
     'eu-west-3':
-      ImageId: 'ami-d50bbaa8'
+      ImageId: 'ami-0f962299dc4d90c81'
     'eu-west-2':
-      ImageId: 'ami-b2b55cd5'
+      ImageId: 'ami-05663d374a152d239'
     'eu-west-1':
-      ImageId: 'ami-e4515e0e'
+      ImageId: 'ami-03c242f4af81b2365'
     'ap-northeast-2':
-      ImageId: 'ami-ebc47185'
+      ImageId: 'ami-082b5ca9ff663f3b8'
     'ap-northeast-1':
-      ImageId: 'ami-9c9443e3'
+      ImageId: 'ami-0ccdbc8c1cb7957be'
     'sa-east-1':
-      ImageId: 'ami-83d58fef'
+      ImageId: 'ami-0eb2a191bf5e40e10'
     'ca-central-1':
-      ImageId: 'ami-03e86a67'
+      ImageId: 'ami-07ab3281411d31d04'
     'ap-southeast-1':
-      ImageId: 'ami-ed838091'
+      ImageId: 'ami-03097abf0db1cdff2'
     'ap-southeast-2':
-      ImageId: 'ami-33f92051'
+      ImageId: 'ami-05067171f4230ac41'
     'eu-central-1':
-      ImageId: 'ami-a058674b'
+      ImageId: 'ami-03a71cec707bfc3d7'
     'us-east-1':
-      ImageId: 'ami-cfe4b2b0'
+      ImageId: 'ami-0756fbca465a59a30'
     'us-east-2':
-      ImageId: 'ami-40142d25'
+      ImageId: 'ami-04768381bf606e2b3'
     'us-west-1':
-      ImageId: 'ami-0e86606d'
+      ImageId: 'ami-063dd30adbb186909'
     'us-west-2':
-      ImageId: 'ami-0ad99772'
+      ImageId: 'ami-07a0c6e669965bb7c'
 Conditions:
   HasAlertingModule: !Not [!Equals [!Ref AlertingModule, '']]
   HasBastionModule: !Not [!Equals [!Ref BastionModule, '']]
@@ -573,7 +608,7 @@ Outputs:
   ModuleId:
     Value: 'ec2-instance-amazon-linux'
   ModuleVersion:
-    Value: '2.0.0'
+    Value: '2.1.0'
   StackName:
     Value: !Ref 'AWS::StackName'
   Id:
