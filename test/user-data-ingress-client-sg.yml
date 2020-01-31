@@ -33,6 +33,7 @@ Resources:
         IngressTcpPort1: '80'
         IngressTcpClientSgModule1: !GetAtt 'ClientSg.Outputs.StackName'
         AmazonLinuxVersion: '2018.03.0.20181116'
+        InstanceType: 't3.nano'
       TemplateURL: './node_modules/@cfn-modules/ec2-instance-amazon-linux/module.yml'
   ClientInstance:
     Type: 'AWS::CloudFormation::Stack'
