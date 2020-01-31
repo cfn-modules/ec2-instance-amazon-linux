@@ -47,4 +47,4 @@ Outputs:
   ClientPublicIpAddress:
     Value: !GetAtt 'ClientInstance.Outputs.PublicIpAddress'
   ServerPrivateIpAddress:
-    Value: !GetAtt 'ClientInstance.Outputs.PrivateIpAddress'
+    Value: !GetAtt 'ServerInstance.Outputs.PrivateIpAddress'
