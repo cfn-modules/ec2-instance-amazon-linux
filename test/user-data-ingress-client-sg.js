@@ -14,7 +14,7 @@ test.serial('user-data-ingress-client-sg', async t => {
       t.log(outputs);
       const stdout = await cfntest.probeSSH(`ec2-user@${outputs.ClientPublicIpAddress}`, key, `curl http://${outputs.ServerPrivateIpAddress}`);
       t.log(stdout);
-      t.is(stdout, 'cfn-modules');
+      t.is(stdout.trim(), 'cfn-modules');
     } finally {
       t.log(await cfntest.deleteStack(stackName));
       t.pass();
