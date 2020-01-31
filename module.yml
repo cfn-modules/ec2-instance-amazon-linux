@@ -254,7 +254,7 @@ Conditions:
   HasIngressTcpPort2: !Not [!Equals [!Ref IngressTcpPort2, '']]
   HasIngressTcpClientSgModule2: !Not [!Equals [!Ref IngressTcpClientSgModule2, '']]
   HasIngressTcpPort3: !Not [!Equals [!Ref IngressTcpPort3, '']]
-  HasIngressTcpPClientSgModule3: !Not [!Equals [!Ref IngressTcpClientSgModule3, '']]
+  HasIngressTcpClientSgModule3: !Not [!Equals [!Ref IngressTcpClientSgModule3, '']]
   HasHostedZoneModuleAndSubnetReachPublic: !And [!Condition HasHostedZoneModule, !Condition HasSubnetReachPublic]
   HasHostedZoneModuleAndSubnetReachPrivate: !And [!Condition HasHostedZoneModule, !Condition HasSubnetReachPrivate]
   HasClientSgModule1: !Not [!Equals [!Ref ClientSgModule1, '']]
